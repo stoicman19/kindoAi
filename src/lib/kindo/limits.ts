@@ -1,6 +1,19 @@
-// KindoAI — AI Engine Registry (2026 free-tier specifications)
-// Loaded as a classic script; exposes window.AI_ENGINES.
-window.AI_ENGINES = {
+// KindoAI — AI Engine Registry (2026 free-tier specs)
+export type EngineId = "groq" | "gemini" | "openrouter" | "openai";
+
+export interface EngineSpec {
+  name: string;
+  model: string;
+  limit: string;
+  dailyCap: number;
+  attachment: string;
+  endpoint: string;
+  keyName: string;
+  keyHint: string;
+  style: "openai" | "gemini";
+}
+
+export const AI_ENGINES: Record<EngineId, EngineSpec> = {
   groq: {
     name: "Groq Cloud",
     model: "llama-3.3-70b-versatile",
@@ -48,4 +61,9 @@ window.AI_ENGINES = {
   },
 };
 
-window.ENGINE_FALLBACK_ORDER = ["groq", "gemini", "openrouter", "openai"];
+export const ENGINE_FALLBACK_ORDER: EngineId[] = [
+  "groq",
+  "gemini",
+  "openrouter",
+  "openai",
+];
